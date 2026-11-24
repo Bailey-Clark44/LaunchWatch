@@ -1,0 +1,28 @@
+{
+  "id": "/",
+  "name": "LaunchWatch",
+  "short_name": "LaunchWatch",
+  "description": "Rocket launches, space station crews, spacewalks and space news, with alerts when plans change.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "background_color": "#0A0D12",
+  "theme_color": "#0A0D12",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["news", "education", "utilities"],
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "icons/Icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/Icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/Icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/Icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Upcoming launches", "short_name": "Launches", "url": "/", "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192" }] },
+    { "name": "Space events", "short_name": "Events", "url": "/events", "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192" }] },
+    { "name": "Space news", "short_name": "News", "url": "/news", "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192" }] },
+    { "name": "People in space", "short_name": "Explore", "url": "/explore", "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192" }] }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "launches",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "list", "order": "ASCENDING" },
+        { "fieldPath": "net", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "launches",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "list", "order": "ASCENDING" },
+        { "fieldPath": "net", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

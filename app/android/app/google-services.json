@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "599559992619",
+    "project_id": "launchwatch-c77fa",
+    "storage_bucket": "launchwatch-c77fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599559992619:android:ad185334f587b79827c16e",
+        "android_client_info": {
+          "package_name": "com.example.launchwatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLO1CYSmt8hr6j6LnlJznytnq-j22mYns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "launchwatch",
+  "private": true,
+  "scripts": {
+    "test": "npm --prefix functions test",
+    "build:functions": "npm --prefix functions run build",
+    "build:web": "cd app && flutter build web --release --no-pub && cd .. && node scripts/stamp-web.mjs"
+  },
+  "devDependencies": {
+    "firebase-tools": "^14.24.1"
+  }
+}

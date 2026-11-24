@@ -1,0 +1,73 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // The launch catalog is public and written only by Cloud Functions.
+    match /launches/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /meta/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /config/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /catalogStats/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Reference data and news: public, written only by Cloud Functions.
+    match /{collection}/{id} {
+      allow read: if collection in ['events', 'stations', 'expeditions', 'astronauts', 'spacewalks', 'programs', 'dockings', 'news'];
+      allow write: if false;
+    }
+
+    function signedIn(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read, delete: if signedIn(uid);
+      allow create, update: if signedIn(uid)
+        && request.resource.data.keys().hasOnly([
+          'email', 'displayName', 'timezone', 'createdAt', 'updatedAt', 'alerts',
+          'digest', 'homeCity', 'calendarToken', 'lastSeen'
+        ]);
+
+      match /follows/{launchId} {
+        allow read, delete: if signedIn(uid);
+        allow create, update: if signedIn(uid)
+          && request.resource.data.launchId == launchId
+          && request.resource.data.keys().hasOnly([
+            'launchId', 'name', 'createdAt', 'slips', 'status', 'liftoff', 'outcome',
+            'reminder24h', 'lastNotifiedAt', 'reminderSentForNet'
+          ]);
+      }
+
+      match /devices/{tokenHash} {
+        allow read, delete: if signedIn(uid);
+        allow create, update: if signedIn(uid)
+          && request.resource.data.token is string
+          && request.resource.data.keys().hasOnly(['token', 'platform', 'updatedAt']);
+      }
+
+      match /watched/{launchId} {
+        allow read, delete: if signedIn(uid);
+        allow create, update: if signedIn(uid)
+          && request.resource.data.keys().hasOnly(['launchId', 'name', 'net', 'vehicle', 'provider', 'imageUrl', 'watchedAt']);
+      }
+
+      // Alerts are written by the server. People can read, mark read, and clear them.
+      match /inbox/{messageId} {
+        allow read, delete: if signedIn(uid);
+        allow update: if signedIn(uid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']);
+        allow create: if false;
+      }
+    }
+  }
+}
